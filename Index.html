@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viaje al Talent Land</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#140321;
+      --bg2:#22063a;
+      --card-soft:#2d1450;
+      --text:#f7f2ff;
+      --muted:#d8c8f1;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 12px 30px rgba(0,0,0,.28);
+    }
+
+    *{
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      font-family:'Inter',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(192,132,252,.22), transparent 25%),
+        radial-gradient(circle at top right, rgba(168,85,247,.18), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    }
+
+    .hero{
+      padding:72px 20px 90px;
+      text-align:center;
+      background-color:#1a0630 !important;
+      background-image:none !important;
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero h1{
+      margin:0 0 12px;
+      font-size:clamp(2.3rem, 6vw, 4.6rem);
+      font-weight:800;
+      letter-spacing:-1px;
+      text-shadow:0 0 18px rgba(192,132,252,.45);
+    }
+
+    .hero p{
+      max-width:850px;
+      margin:0 auto 20px;
+      color:var(--muted);
+      font-size:1.06rem;
+    }
+
+    .badges{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:12px;
+      margin-top:24px;
+    }
+
+    .badge{
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--line);
+      color:#fff;
+      font-size:.95rem;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(18,4,30,.88);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(12px);
+    }
+
+    .nav-wrap{
+      max-width:1150px;
+      margin:auto;
+      padding:12px 14px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#fff;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:700;
+      transition:.2s ease;
+    }
+
+    nav a:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    main{
+      max-width:1150px;
+      margin:-36px auto 0;
+      padding:0 18px 40px;
+    }
+
+    section{
+      background:rgba(36,16,59,.96);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:24px;
+      padding:28px;
+      margin:22px 0;
+    }
+
+    h2{
+      margin-top:0;
+      font-size:1.8rem;
+      color:#f3e8ff;
+      text-shadow:0 0 12px rgba(192,132,252,.22);
+    }
+
+    .lead{
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(168,85,247,.12), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:20px;
+      padding:18px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:1.06rem;
+      color:#fff;
+    }
+
+    .btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .btn{
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:12px 16px;
+      border-radius:12px;
+      font-weight:700;
+      transition:.2s ease;
+      color:#fff;
+    }
+
+    .btn-primary{
+      background:linear-gradient(90deg, #9333ea, #c084fc);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      filter:brightness(1.06);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    .btn-whatsapp{
+      background:#22c55e;
+    }
+
+    .btn-whatsapp:hover{
+      background:#16a34a;
+    }
+
+    .photo-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:16px;
+      margin-bottom:20px;
+    }
+
+    .photo{
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:#12051d;
+    }
+
+    .photo img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .photo span{
+      display:block;
+      padding:10px 12px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .schedule{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:16px;
+      margin-top:16px;
+    }
+
+    .schedule .box{
+      background:var(--card-soft);
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:20px;
+      padding:18px;
+    }
+
+    .schedule .box ul{
+      margin:10px 0 0 18px;
+      padding:0;
+    }
+
+    .schedule .box li{
+      margin-bottom:6px;
+    }
+
+    .note{
+      margin-top:16px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(239,68,68,.10);
+      border:1px solid rgba(239,68,68,.22);
+      color:#ffe4e6;
+    }
+
+    .note p{
+      margin:6px 0;
+    }
+
+    .price{
+      font-size:1.15rem;
+      font-weight:800;
+      color:#fff;
+    }
+
+    .price-note{
+      margin-top:16px;
+      padding:14px 18px;
+      background:rgba(192,132,252,.08);
+      border:1px solid rgba(192,132,252,.20);
+      border-radius:14px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    footer{
+      text-align:center;
+      color:var(--muted);
+      padding:10px 20px 40px;
+    }
+
+    @media (max-width:640px){
+      .hero{
+        padding:56px 16px 82px;
+      }
+      section{
+        padding:22px 18px;
+      }
+      .photo-grid{
+        grid-template-columns:1fr;
+      }
+      .photo img{
+        height:180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <h1>Viaje al Talent Land</h1>
+    <p>Informacion del evento, transporte, camping y hospedaje para el viaje a Expo Santa Fe, CDMX.</p>
+    <div class="badges">
+      <span class="badge">Vallarta - CDMX</span>
+      <span class="badge">6 al 10 de abril</span>
+      <span class="badge">Camion redondo $1,850 MXN</span>
+      <span class="badge">Camping disponible</span>
+      <span class="badge">Gamma y Barcelo</span>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-wrap">
+      <a href="#inicio">Inicio</a>
+      <a href="#transporte">Transporte</a>
+      <a href="#camping">Camping</a>
+      <a href="#gamma">Hotel Gamma</a>
+      <a href="#barcelo">Hotel Barcelo</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- INICIO -->
+    <section id="inicio">
+      <h2>Inicio</h2>
+      <p class="lead">Desde el consejo de división de ingenierías del Cucosta estamos organizando un viaje para toda la comunidad de tecnología, con la finalidad de participar juntos en esta experiencia única.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Evento</h3>
+          <p>Talent Land reune actividades de tecnologia, innovacion, creatividad, conferencias, talleres y networking.</p>
+        </div>
+        <div class="card">
+          <h3>Sede</h3>
+          <p>Expo Santa Fe, Ciudad de Mexico.</p>
+        </div>
+        <div class="card">
+          <h3>Fechas</h3>
+          <p>Del 7 al 9 de abril, con salida el 6 y regreso el 10 de abril.</p>
+        </div>
+      </div>
+      <div class="btns">
+        <a class="btn btn-whatsapp" href="https://chat.whatsapp.com/IZLo3opW71o3KfoSRooBXz" target="_blank">Unirse al grupo de WhatsApp del evento</a>
+        <a class="btn btn-primary" href="#transporte">Ver transporte</a>
+        <a class="btn btn-secondary" href="#camping">Ver camping</a>
+        <a class="btn btn-secondary" href="#gamma">Ver hospedaje</a>
+      </div>
+    </section>
+
+    <!-- TRANSPORTE -->
+    <section id="transporte">
+      <h2>Transporte</h2>
+      <p class="lead">El transporte redondo tiene un costo de <span class="price">$1,850 MXN</span> y solo incluye el camion.</p>
+
+      <div class="photo-grid">
+        <div class="photo">
+          <img src="image-4.jpg" alt="Camion del viaje">
+          <span>Camion redondo Vallarta - CDMX.</span>
+        </div>
+        <div class="photo">
+          <img src="image-5.jpg" alt="Camion del viaje 2">
+          <span>Salida puntual a las 8:00 pm desde CUCosta.</span>
+        </div>
+      </div>
+
+      <div class="schedule">
+        <div class="box">
+          <h3>Salida Vallarta a CDMX</h3>
+          <ul>
+            <li><strong>Punto de salida:</strong> CUCosta</li>
+            <li><strong>Dia:</strong> Lunes 6 de abril</li>
+            <li><strong>Hora de salida:</strong> 8:00 pm</li>
+            <li><strong>Presentarse:</strong> entre 6:45 y 7:15 pm</li>
+            <li><strong>Toma de lista:</strong> 7:45 pm</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Regreso CDMX a Vallarta</h3>
+          <ul>
+            <li><strong>Punto de salida:</strong> Expo Santa Fe</li>
+            <li><strong>Dia:</strong> Viernes 10 de abril</li>
+            <li><strong>Hora de salida:</strong> 1:00 am</li>
+            <li><strong>Presentarse:</strong> entre 12:00 y 12:30 am</li>
+            <li><strong>Toma de lista:</strong> 12:45 am</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note">
+        <p><strong>Importante salida:</strong> A las 7:50 pm se cierran puertas. El camion sale 8:00 pm en punto. Quien llegue despues ya no podra abordar.</p>
+        <p><strong>Importante regreso:</strong> A las 12:50 am se cierran puertas. El camion sale 1:00 am en punto. Quien no este a esa hora, se queda.</p>
+        <p><strong>Aviso:</strong> Por favor sean puntuales. Solo coordinamos el transporte y no nos hacemos responsables por retrasos individuales.</p>
+      </div>
+
+      <div class="btns">
+        <a class="btn btn-whatsapp" href="https://wa.me/523221003164?text=Hola%2C%20quiero%20informacion%20sobre%20el%20transporte%20al%20Talent%20Land" target="_blank">Contactar a Hector · 322 100 3164</a>
+        <a class="btn btn-whatsapp" href="https://wa.me/523223692686?text=Hola%2C%20quiero%20informacion%20sobre%20el%20transporte%20al%20Talent%20Land" target="_blank">Contactar a Mike · 322 369 2686</a>
+      </div>
+    </section>
+
+    <!-- CAMPING -->
+    <section id="camping">
+      <h2>Camping</h2>
+      <p class="lead">El camping se ofrece dentro de Expo Santa Fe e incluye casa de campana de regalo, regaderas, banos y ambiente festivo.</p>
+
+      <div class="photo-grid">
+        <div class="photo">
+          <img src="image-c.jpg" alt="Camping Talent Land vista 1">
+          <span>Vista 1 de la zona de camping.</span>
+        </div>
+        <div class="photo">
+          <img src="image.jpg" alt="Camping Talent Land vista 2">
+          <span>Vista 2 de la zona de camping.</span>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Camping individual</h3>
+          <p><strong>Costo:</strong> $1,600 MXN por persona</p>
+          <p><strong>Duracion:</strong> 2 dias y 3 noches</p>
+          <p><strong>Incluye:</strong> Dentro de Expo Santa Fe, casa de campana de regalo, regaderas, banos y ambiente festivo.</p>
+        </div>
+        <div class="card">
+          <h3>Camping doble</h3>
+          <p><strong>Costo:</strong> $1,050 MXN por persona</p>
+          <p><strong>Duracion:</strong> 2 dias y 3 noches</p>
+          <p><strong>Incluye:</strong> Dentro de Expo Santa Fe, casa de campana de regalo, regaderas, banos y ambiente festivo.</p>
+        </div>
+        <div class="card">
+          <h3>Medida de tienda</h3>
+          <p>Las tiendas de acampar miden 200 cm x 100 cm. Disfruta las actividades desde que amanece hasta la media noche.</p>
+        </div>
+      </div>
+
+      <div class="btns">
+        <a class="btn btn-whatsapp" href="https://wa.me/523221003164?text=Hola%2C%20quiero%20apartar%20lugar%20de%20camping%20para%20el%20Talent%20Land" target="_blank">Contactar a Hector · 322 100 3164</a>
+      </div>
+    </section>
+
+    <!-- HOTEL GAMMA -->
+    <section id="gamma">
+      <h2>Hotel Gamma</h2>
+      <p class="lead">Opciones de hospedaje en Hotel Gamma con amenidades y cercania a Expo Santa Fe.</p>
+
+      <div class="photo-grid">
+        <div class="photo">
+          <img src="gamma2.jpg" alt="Habitacion Hotel Gamma 2 personas">
+          <span>Habitacion para 2 personas.</span>
+        </div>
+        <div class="photo">
+          <img src="gamma1.jpg" alt="Habitacion Hotel Gamma 4 personas">
+          <span>Habitacion para 4 personas.</span>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Habitacion 2 personas</h3>
+          <p><strong>Costo:</strong> $1,600 MXN por persona</p>
+          <p><strong>Duracion:</strong> 2 dias y 3 noches</p>
+          <p><strong>Incluye:</strong> Aire acondicionado, Smart TV, cafetera, gimnasio y 1 cama Queen.</p>
+        </div>
+        <div class="card">
+          <h3>Habitacion 4 personas</h3>
+          <p><strong>Costo:</strong> $1,250 MXN por persona</p>
+          <p><strong>Duracion:</strong> 2 dias y 3 noches</p>
+          <p><strong>Incluye:</strong> Aire acondicionado, Smart TV, cafetera, gimnasio y 2 camas King.</p>
+        </div>
+        <div class="card">
+          <h3>Cerca de</h3>
+          <p>Starbucks, Oxxo, Walmart Supercenter, transporte SITP buses a 5 minutos y Expo Santa Fe.</p>
+        </div>
+      </div>
+
+      <div class="price-note">
+        Los precios mostrados pueden variar segun la disponibilidad del hotel al momento de realizar la reservacion.
+      </div>
+
+      <div class="btns">
+        <a class="btn btn-whatsapp" href="https://wa.me/523222408569?text=Hola%2C%20quiero%20informacion%20del%20Hotel%20Gamma%20para%20el%20Talent%20Land" target="_blank">Contactar a Isabel · 322 240 8569</a>
+      </div>
+    </section>
+
+    <!-- HOTEL BARCELO -->
+    <section id="barcelo">
+      <h2>Hotel Barcelo</h2>
+      <p class="lead">Opciones de hospedaje en Hotel Barcelo Santa Fe con amenidades cercanas y a 17 minutos caminando del evento.</p>
+
+      <div class="photo-grid">
+        <div class="photo">
+          <img src="image-3.jpg" alt="Habitacion Hotel Barcelo 2 personas">
+          <span>Habitacion superior para 2 personas.</span>
+        </div>
+        <div class="photo">
+          <img src="imageb.jpg" alt="Habitacion Hotel Barcelo 3 personas">
+          <span>Habitacion superior para 3 personas.</span>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Habitacion superior 2 personas</h3>
+          <p><strong>Costo:</strong> $1,597 MXN por persona</p>
+          <p><strong>Duracion:</strong> 2 dias y 3 noches</p>
+          <p><strong>Incluye:</strong> Cafetera, plancha, TV y 1 cama Matrimonial/King/Queen Size.</p>
+        </div>
+        <div class="card">
+          <h3>Habitacion superior 3 personas</h3>
+          <p><strong>Costo:</strong> $1,064 MXN por persona</p>
+          <p><strong>Duracion:</strong> 2 dias y 3 noches</p>
+          <p><strong>Incluye:</strong> Cafetera, plancha, TV y 2 camas Matrimonial/King/Queen Size.</p>
+        </div>
+        <div class="card">
+          <h3>Ubicacion</h3>
+          <p>A 17 minutos caminando del Talent Land. Chedraui, Oxxo, Seven Eleven y mas amenidades cerca.</p>
+        </div>
+      </div>
+
+      <div class="price-note">
+        Los precios mostrados pueden variar segun la disponibilidad del hotel al momento de realizar la reservacion.
+      </div>
+
+      <div class="btns">
+        <a class="btn btn-whatsapp" href="https://wa.me/523317018100?text=Hola%2C%20quiero%20informacion%20del%20Hotel%20Barcelo%20para%20el%20Talent%20Land" target="_blank">Contactar a Jocelyn · 33 1701 8100</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Viaje al Talent Land · Consejo universitario division ingenierias del Cucosta</p>
+  </footer>
+
+</body>
+</html>
+
